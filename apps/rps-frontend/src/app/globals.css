@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  
+  /* ── visionOS Spatial Glass System ── */
+  --glass-specular: inset 0 1px 0 0 rgba(255,255,255,0.06);
+  --glass-specular-strong: inset 0 1px 0 0 rgba(255,255,255,0.12);
+  --glass-inner-glow: inset 0 0 20px rgba(255,255,255,0.03);
+  --glass-float: 0 8px 40px rgba(0,0,0,0.25), 0 2px 8px rgba(0,0,0,0.15);
+  --glass-float-lg: 0 16px 64px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.2);
+  --glass-ambient: 0 0 40px rgba(56,189,248,0.04);
+
+  /* Custom Apple/Vibrant Palette Overrides */
+  --color-sky-300: #5c82ff;
+  --color-sky-400: #3366ff;
+  --color-sky-500: #1446FF;
+  --color-sky-600: #0a2ebd;
+  
+  --color-emerald-400: #50d26f;
+  --color-emerald-500: #34c759;
+  --color-emerald-600: #26a146;
+  
+  --color-red-400: #fa3c5d;
+  --color-red-500: #f7052d;
+  --color-red-600: #d10022;
+  
+  /* Custom Apple iOS Squircles — visionOS refined */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 26px;
+  --radius-3xl: 34px;
+  --radius-4xl: 50px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* ── visionOS Fluid Interaction Baseline ── */
+button, a, input, select, textarea, [role="button"] {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+input:focus, select:focus, textarea:focus {
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.12), inset 0 1px 0 0 rgba(255,255,255,0.06);
+  outline: none;
+}
+
+::selection {
+  background: rgba(56, 189, 248, 0.25);
+}
+
+/* ── Spatial Scrollbar (WebKit) ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 50px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
