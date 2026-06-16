@@ -12,6 +12,8 @@ interface StaffChatWidgetProps {
         role: string;
     };
     theme?: any;
+    boundsRef?: React.RefObject<HTMLDivElement | null>;
+    isEditable?: boolean;
 }
 const ROLE_COLORS: Record<string, string> = {
     admin: "text-sky-400",
@@ -61,7 +63,7 @@ export default function StaffChatWidget({ currentUser, theme }: StaffChatWidgetP
                 const newState = presenceChannel.presenceState();
                 const typers: Record<string, any> = {};
                 for (const id in newState) {
-                    if (id !== currentUser.id && newState[id][0]?.isTyping) {
+                    if (id !== currentUser.id && (newState[id][0] as any)?.isTyping) {
                         typers[id] = newState[id][0];
                     }
                 }
@@ -79,7 +81,7 @@ export default function StaffChatWidget({ currentUser, theme }: StaffChatWidgetP
                         setMessages(prev => {
                             if (prev.find(m => m.id === res.message.id)) return prev;
                             if (res.message.sender_id !== currentUser.id && 'Notification' in window && Notification.permission === 'granted') {
-                                new Notification(`Staff Comms: ${res.message.sender?.username || 'System'}`, {
+                                new Notification(`Staff Comms: ${(res.message.sender as any)?.username || 'System'}`, {
                                     body: res.message.message,
                                     icon: '/logo.png' 
                                 });

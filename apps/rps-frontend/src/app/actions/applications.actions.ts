@@ -16,6 +16,7 @@ export interface ApplicationData {
     cover_letter?: string;
     status: string;
     created_at?: string;
+    job?: { title: string };
 }
 export async function submitApplication(appData: ApplicationData) {
     try {

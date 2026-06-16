@@ -40,7 +40,8 @@ export default function PublicJobBoard({ isDarkTheme }: { isDarkTheme: boolean }
             phone: formData.phone,
             discord: formData.discord,
             portfolio_url: formData.portfolio,
-            cover_letter: formData.coverLetter
+            cover_letter: formData.coverLetter,
+            status: 'Pending Review'
         });
         if (res.success) {
             setSuccess(true);
