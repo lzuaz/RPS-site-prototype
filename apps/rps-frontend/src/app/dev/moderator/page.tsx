@@ -1,3 +1,4 @@
+export const metadata = { title: "Moderator Hub" };
 "use client";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
