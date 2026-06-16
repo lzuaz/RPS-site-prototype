@@ -17,6 +17,7 @@ const darkTheme = {
     textMuted: "text-white/60",
     textSubtle: "text-white/30",
     borderBase: "border-white/[0.08]",
+    borderStrong: "border-white/[0.15]",
     inputBg: "bg-white/[0.02]",
     glassCard: "bg-white/[0.02] border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.5)]"
 };
@@ -27,6 +28,7 @@ const lightTheme = {
     textMuted: "text-black/60",
     textSubtle: "text-black/30",
     borderBase: "border-black/[0.08]",
+    borderStrong: "border-black/[0.15]",
     inputBg: "bg-black/[0.02]",
     glassCard: "bg-white/80 border-white shadow-[0_8px_32px_rgba(0,0,0,0.05)]"
 };
@@ -40,6 +42,7 @@ export default function ModeratorDashboard() {
     const router = useRouter();
     const [authLoading, setAuthLoading] = useState(true);
     const [username, setUsername] = useState("");
+    const [currentUser, setCurrentUser] = useState<any>(null);
     const [isDarkTheme, setIsDarkTheme] = useState(true);
     const theme = isDarkTheme ? darkTheme : lightTheme;
     const [activeTab, setActiveTab] = useState("datastore");
@@ -51,6 +54,7 @@ export default function ModeratorDashboard() {
                 return;
             }
             setUsername(session.username);
+            setCurrentUser(session);
             setAuthLoading(false);
         };
         checkAuth();
@@ -278,7 +282,7 @@ export default function ModeratorDashboard() {
                     </div>
                 )}
             </main>
-            <StaffChatWidget />
+            {currentUser && <StaffChatWidget currentUser={currentUser} theme={theme} />}
         </div>
     );
 }
